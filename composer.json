@@ -1,0 +1,16 @@
+{
+    "name": "ModernPUG/FeedReader",
+    "authors": [
+        {
+            "name": "Koo Jun Ho",
+            "email": "kneadtruth@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+	        "ModernPUG\\FeedReader\\": "/"
+        }
+    }
+}
+
