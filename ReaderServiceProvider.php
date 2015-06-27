@@ -12,6 +12,10 @@ class ReaderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/views', 'fdrdr');
+
+        $this->publishes([
+            __DIR__.'/migrations' => database_path('/migrations'),
+        ]);
     }
 
     /**
