@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('fdrdr::layouts.default')
 
 @section('content')
 <div class="container">
