@@ -16,7 +16,7 @@ class Reader implements IReader
 
     public function getCreateViewName()
     {
-        return 'blogs.create';
+        return 'fdrdr::blogs.create';
     }
 
     public function recentUpdatedArticles()

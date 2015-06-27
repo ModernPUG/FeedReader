@@ -11,7 +11,7 @@ class ReaderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(__DIR__.'/views', 'fdrdr');
     }
 
     /**
