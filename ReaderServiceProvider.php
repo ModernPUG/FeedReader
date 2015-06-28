@@ -26,5 +26,7 @@ class ReaderServiceProvider extends ServiceProvider
         $this->app->singleton(\ModernPUG\FeedReader\IReader::class, function ($app) {
             return new \ModernPUG\FeedReader\Reader();
         });
+
+        $this->commands('\ModernPUG\FeedReader\CrawlFeed');
     }
 }
