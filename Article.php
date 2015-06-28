@@ -21,6 +21,6 @@ class Article extends Model
 
     public function Tags()
     {
-        return $this->belongsToMany('ModernPUG\FeedReader\Tag');
+        return $this->belongsToMany('ModernPUG\FeedReader\Tag')->withTimestamps();
     }
 }
