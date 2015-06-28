@@ -6,13 +6,17 @@
             "email": "kneadtruth@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "zendframework/zend-feed": "^2.5",
+        "zendframework/zend-http": "^2.5",
+        "wandu/http": "1.0.*@dev"
+    },
     "require-dev": {
-      "codeception/codeception": "^2.0"
+        "codeception/codeception": "^2.0"
     },
     "autoload": {
         "psr-4": {
-	        "ModernPUG\\FeedReader\\": "/"
+            "ModernPUG\\FeedReader\\": "/"
         }
     }
 }
