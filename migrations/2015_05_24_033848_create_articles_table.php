@@ -15,15 +15,13 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('link');
+            $table->string('link', 500);
             $table->string('description');
 
             $table->integer('blog_id')->unsigned();
             $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('cascade');;
 
             $table->timestamps();
-
-            $table->unique('link');
         });
     }
 

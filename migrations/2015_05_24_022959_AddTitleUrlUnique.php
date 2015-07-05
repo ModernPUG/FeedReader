@@ -12,10 +12,7 @@ class AddTitleUrlUnique extends Migration
      */
     public function up()
     {
-        Schema::table('blogs', function ($table) {
-            $table->unique('title');
-            $table->unique('url');
-        });
+
     }
 
     /**

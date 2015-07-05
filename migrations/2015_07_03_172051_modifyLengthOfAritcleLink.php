@@ -12,11 +12,7 @@ class ModifyLengthOfAritcleLink extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->dropForeign('articles_blog_id_foreign');
-            $table->dropUnique(['blog_id', 'link']);
-            $table->string('link',500)->change();
-        });
+       //수동해결..
     }
 
     /**

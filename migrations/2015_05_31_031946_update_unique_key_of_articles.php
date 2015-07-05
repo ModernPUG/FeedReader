@@ -12,17 +12,7 @@ class UpdateUniqueKeyOfArticles extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function ($table) {
-            $conn = Schema::getConnection();
-            $dbSchemaManager = $conn->getDoctrineSchemaManager();
-            $doctrineTable = $dbSchemaManager->listTableDetails('articles');
 
-            if ($doctrineTable->hasIndex('articles_link')) {
-                $table->dropUnique('articles_link');
-            }
-
-            $table->unique(['blog_id', 'link']);
-        });
     }
 
     /**
