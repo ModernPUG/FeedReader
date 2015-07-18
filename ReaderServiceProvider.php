@@ -14,7 +14,7 @@ class ReaderServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/views', 'fdrdr');
 
         $this->publishes([
-            __DIR__.'/migrations' => database_path('/migrations'),
+            __DIR__.'/migrations' => database_path('/migrations/ModernPUG/FeedReader'),
         ]);
     }
 
