@@ -105,7 +105,7 @@ class Reader implements IReader
             $blogUri = new Uri($blog->feed_url);
             $articleUri = new Uri($entry->getLink());
             $link = $blogUri->join($articleUri)->__toString();
-            $description = mb_substr($entry->getDescription(), 0, 250);
+            $description = mb_substr(strip_tags($entry->getDescription()), 0, 250);
             $published_at = $entry->getDateModified();
 
             $article = Article::where('blog_id', $blog->id)
