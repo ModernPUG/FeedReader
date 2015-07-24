@@ -9,7 +9,7 @@
     "require": {
         "zendframework/zend-feed": "^2.5",
         "zendframework/zend-http": "^2.5",
-        "wandu/http": "1.0.*@dev"
+        "wandu/http": "^0.4"
     },
     "require-dev": {
         "codeception/codeception": "^2.0"
