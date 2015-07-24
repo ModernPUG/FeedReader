@@ -19,14 +19,19 @@ class Reader implements IReader
         return 'fdrdr::blogs.create';
     }
 
+    public function blogs()
+    {
+        return Blog::orderBy('title', 'asc')->get();
+    }
+
     public function recentUpdatedArticles()
     {
         return Article::with('blog')->orderBy('published_at', 'desc')->paginate(10);
     }
 
-    public function blogs()
+    public function viewArticle(Article $article, $ip)
     {
-        return Blog::orderBy('title', 'asc')->get();
+        return Viewcount::view($article, $ip);
     }
 
     public function insertFeed($args)

@@ -23,8 +23,8 @@ class ReaderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(\ModernPUG\FeedReader\IReader::class, function ($app) {
-            return new \ModernPUG\FeedReader\Reader();
+        $this->app->singleton(IReader::class, function ($app) {
+            return new Reader();
         });
 
         $this->commands('\ModernPUG\FeedReader\CrawlFeed');
