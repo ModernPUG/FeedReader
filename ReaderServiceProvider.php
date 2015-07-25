@@ -28,5 +28,6 @@ class ReaderServiceProvider extends ServiceProvider
         });
 
         $this->commands('\ModernPUG\FeedReader\CrawlFeed');
+        $this->commands('\ModernPUG\FeedReader\SendSlackBestArticles');
     }
 }
