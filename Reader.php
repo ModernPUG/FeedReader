@@ -148,4 +148,9 @@ class Reader implements IReader
             }
         }
     }
+
+    public function getLastBestArticles($lastDays)
+    {
+        return Viewcount::getLastBestArticles($lastDays);
+    }
 }

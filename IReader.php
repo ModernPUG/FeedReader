@@ -12,4 +12,5 @@ interface IReader
     public function insertFeed($args);
     public function updateAllblogs();
     public function updateBlog($blog);
+    public function getLastBestArticles($lastDays);
 }

@@ -21,4 +21,10 @@ trait ArticleController
 
         return redirect($redirectUrl);
     }
+
+    public function bestLastWeek(IReader $reader)
+    {
+        $articles = $reader->getLastBestArticles(7);
+        return view('allblog.best', compact('articles'));
+    }
 }

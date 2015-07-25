@@ -2,6 +2,7 @@
 
 namespace ModernPUG\FeedReader;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Viewcount extends Model
@@ -18,5 +19,21 @@ class Viewcount extends Model
         ]);
 
         return $article->link;
+    }
+
+    public static function getLastBestArticles($lastDays)
+    {
+        $sql =<<<SQL
+SELECT count(articles.id) AS vcount, articles.*
+FROM viewcount
+JOIN articles
+ON articles.id = viewcount.article_id
+WHERE viewcount.created_at >= DATE(NOW()) - INTERVAL ? DAY
+GROUP BY articles.id
+ORDER BY vcount DESC
+SQL;
+        $result = DB::select($sql, [$lastDays]);
+
+        return Article::hydrate($result);
     }
 }
