@@ -8,7 +8,7 @@ class SendSlackBestArticles extends Command
 {
     protected $name = 'send:slack:best';
 
-    protected $description = 'Slack¿¡ ÀÎ±â±ÛÀ» º¸³½´Ù';
+    protected $description = 'Slackì— ì¸ê¸°ê¸€ì„ ë³´ë‚¸ë‹¤';
 
     public function fire(IReader $reader)
     {
@@ -21,6 +21,6 @@ class SendSlackBestArticles extends Command
             $output .= "$rank. $title ( $url )\r\n";
             $rank++;
         }
-        Slack::send($output);
+        \Slack::send($output);
     }
 }
