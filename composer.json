@@ -10,7 +10,7 @@
         "zendframework/zend-feed": "^2.5",
         "zendframework/zend-http": "^2.5",
         "wandu/http": "dev-master",
-        "threadmeup/slack-sdk": "dev-master"
+        "maknz/slack": "^1.7"
     },
     "require-dev": {
         "codeception/codeception": "^2.0"
@@ -19,6 +19,5 @@
         "psr-4": {
             "ModernPUG\\FeedReader\\": "/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
