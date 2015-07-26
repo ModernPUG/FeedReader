@@ -14,11 +14,11 @@ class SendSlackBestArticles extends Command
     {
         $articles = $reader->getLastBestArticles(7);
         $rank = 1;
-        $output = '';
+        $output = "allblog 주간 인기글 입니다. \r\n\r\n";
         foreach ( $articles as $article ) {
             $url = url("article/{$article->id}");
             $title = $article->title;
-            $output .= "$rank. $title ( $url )\r\n";
+            $output .= "$rank. $title ( $url )\r\n\r\n";
             $rank++;
         }
         \Slack::send($output);
