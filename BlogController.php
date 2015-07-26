@@ -10,7 +10,7 @@ trait BlogController
     {
         $blogs = $reader->blogs();
 
-        return view('fdrdr::blogs.index', compact('blogs'));
+        return view('allblog.blog_index', compact('blogs'));
     }
 
     public function create(IReader $reader)
