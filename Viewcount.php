@@ -31,6 +31,7 @@ ON articles.id = viewcount.article_id
 WHERE viewcount.created_at >= DATE(NOW()) - INTERVAL ? DAY
 GROUP BY articles.id
 ORDER BY vcount DESC
+LIMIT 20
 SQL;
         $result = DB::select($sql, [$lastDays]);
 
