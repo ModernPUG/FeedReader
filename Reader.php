@@ -104,48 +104,52 @@ class Reader implements IReader
 
     public function updateBlog($blog)
     {
-        $feed = ZendReader::import($blog->feed_url);
+        try {
+            $feed = ZendReader::import($blog->feed_url);
 
-        foreach ($feed as $entry) {
-            $blogUri = new Uri($blog->feed_url);
-            $articleUri = new Uri($entry->getLink());
-            $link = $blogUri->join($articleUri)->__toString();
-            $description = mb_substr(strip_tags($entry->getDescription()), 0, 250);
-            $published_at = $entry->getDateModified();
+            foreach ($feed as $entry) {
+                $blogUri = new Uri($blog->feed_url);
+                $articleUri = new Uri($entry->getLink());
+                $link = $blogUri->join($articleUri)->__toString();
+                $description = mb_substr(strip_tags($entry->getDescription()), 0, 250);
+                $published_at = $entry->getDateModified();
 
-            $article = Article::where('blog_id', $blog->id)
-                ->where('link', $link)
-                ->first();
+                $article = Article::where('blog_id', $blog->id)
+                    ->where('link', $link)
+                    ->first();
 
-            if (empty($article)) {
-                $article = Article::create([
-                    'title' => $entry->getTitle(),
-                    'link' => $link,
-                    'description' => $description,
-                    'published_at' => $published_at,
-                    'blog_id' => $blog->id,
-                ]);
+                if (empty($article)) {
+                    $article = Article::create([
+                        'title' => $entry->getTitle(),
+                        'link' => $link,
+                        'description' => $description,
+                        'published_at' => $published_at,
+                        'blog_id' => $blog->id,
+                    ]);
 
-                foreach ($entry->getCategories() as $category) {
-                    $tag = Tag::where('name', $category['label'])->first();
-
-                    if (empty($tag)) {
-                        $tag = Tag::create([
-                            'name' => $category['label'],
-                        ]);
-                    } else {
+                    foreach ($entry->getCategories() as $category) {
                         $tag = Tag::where('name', $category['label'])->first();
-                    }
 
-                    $article->tags()->attach($tag['id']);
-                }
-            } else {
-                if ($article->title != $entry->getTitle() || $article->description != $description) {
-                    $article->title = $entry->getTitle();
-                    $article->description = $description;
-                    $article->save();
+                        if (empty($tag)) {
+                            $tag = Tag::create([
+                                'name' => $category['label'],
+                            ]);
+                        } else {
+                            $tag = Tag::where('name', $category['label'])->first();
+                        }
+
+                        $article->tags()->attach($tag['id']);
+                    }
+                } else {
+                    if ($article->title != $entry->getTitle() || $article->description != $description) {
+                        $article->title = $entry->getTitle();
+                        $article->description = $description;
+                        $article->save();
+                    }
                 }
             }
+        } catch ( \Exception $e) {
+
         }
     }
 
