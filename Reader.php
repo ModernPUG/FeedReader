@@ -31,7 +31,24 @@ class Reader implements IReader
         if ($tag != 'all') {
             $articles = Article::whereHas('tags', function($q) use ($tag)
             {
-                $q->where('name', $tag);
+                $tags[] = $tag;
+
+                //php 연관 태그들도 보여줌
+                if($tag == 'php') {
+                    $tags[] = '언어 - PHP';
+                    $tags[] = 'laravel 4';
+                    $tags[] = 'laravel 5';
+                    $tags[] = '라라벨';
+                    $tags[] = '코드이그나이터';
+                    $tags[] = 'modern php';
+                    $tags[] = 'laravel';
+                    $tags[] = 'wordpress';
+                    $tags[] = 'codeigniter';
+                    $tags[] = 'php 7';
+                    $tags[] = 'php7';
+                }
+
+                $q->whereIn('name', $tags);
             });
         }
 
