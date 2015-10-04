@@ -24,9 +24,18 @@ class Reader implements IReader
         return Blog::orderBy('title', 'asc')->get();
     }
 
-    public function recentUpdatedArticles()
+    public function recentUpdatedArticles($tag = null)
     {
-        return Article::with('blog')->orderBy('published_at', 'desc')->paginate(10);
+        $articles = Article::with('blog');
+
+        if ($tag != 'all') {
+            $articles = Article::whereHas('tags', function($q) use ($tag)
+            {
+                $q->where('name', $tag);
+            });
+        }
+
+        return $articles->orderBy('published_at', 'desc')->paginate(10);
     }
 
     public function viewArticle(Article $article, $ip)

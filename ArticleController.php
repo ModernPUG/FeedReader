@@ -6,12 +6,27 @@ use Illuminate\Http\Request;
 
 trait ArticleController
 {
-    public function index(IReader $reader)
+    public function index(IReader $reader, Request $request)
     {
-        $articles = $reader->recentUpdatedArticles();
-        $blogs = $reader->blogs();
+        $tag = $request->input('tag');
 
-        return view('allblog.articles', compact('articles', 'blogs'));
+        if($tag == null) $tag = 'php';
+
+        $articles = $reader->recentUpdatedArticles($tag);
+
+        if($tag) {
+            $pagination = $articles->appends(['tag' => $tag])->render();
+        } else {
+            $pagination = $articles->render();
+        }
+
+        $data = [
+            'articles' => $articles,
+            'pagination' => $pagination,
+            'tag' => $tag
+        ];
+
+        return view('allblog.articles', $data);
     }
 
     public function show(IReader $reader, Request $request, $article_id)
