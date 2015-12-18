@@ -3,7 +3,7 @@
 namespace ModernPUG\FeedReader;
 
 use Zend\Feed\Reader\Reader as ZendReader;
-use Wandu\Http\Uri;
+use Wandu\Http\Psr\Uri;
 
 class Reader implements IReader
 {
