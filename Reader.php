@@ -24,34 +24,9 @@ class Reader implements IReader
         return Blog::orderBy('title', 'asc')->get();
     }
 
-    public function recentUpdatedArticles($tag = null)
+    public function recentUpdatedArticles()
     {
         $articles = Article::with('blog');
-
-        if ($tag != 'all') {
-            $articles = Article::with('blog')
-                ->whereHas('tags', function ($q) use ($tag) {
-                    $tags[] = $tag;
-
-                    //php 연관 태그들도 보여줌
-                    if ($tag == 'php') {
-                        $tags[] = '언어 - PHP';
-                        $tags[] = 'laravel 4';
-                        $tags[] = 'laravel 5';
-                        $tags[] = '라라벨';
-                        $tags[] = '코드이그나이터';
-                        $tags[] = 'modern php';
-                        $tags[] = 'laravel';
-                        $tags[] = 'wordpress';
-                        $tags[] = 'codeigniter';
-                        $tags[] = 'php 7';
-                        $tags[] = 'php7';
-                    }
-
-                    $q->whereIn('name', $tags);
-                });
-        }
-
         return $articles->orderBy('published_at', 'desc')->paginate(10);
     }
 

@@ -6,7 +6,7 @@ interface IReader
 {
     public function getLastError();
     public function getCreateViewName();
-    public function recentUpdatedArticles($tag);
+    public function recentUpdatedArticles();
     public function viewArticle(Article $article, $ip);
     public function blogs();
     public function insertFeed($args);
