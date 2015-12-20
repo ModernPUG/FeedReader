@@ -2,7 +2,9 @@
 
 namespace ModernPUG\FeedReader;
 
+use App\Entities\Tag;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Article extends Model
 {
@@ -19,18 +21,20 @@ class Article extends Model
         return $this->belongsTo('ModernPUG\FeedReader\Blog');
     }
 
-    public function Tags()
+    public function tags()
     {
         return $this->belongsToMany('ModernPUG\FeedReader\Tag')->withTimestamps();
     }
 
-    public function hasTag(array $tagNames)
+    public function hasTag(array $tags)
     {
-        $tags = $this->tags();
-        foreach($tagNames as $tagName) {
-            if($tags->contains($tagName)) {
+        $tagCollection = $this->tags;
+        foreach($tagCollection as $tag) {
+            if(in_array($tag['name'], $tags)) {
                 return true;
             }
         }
+
+        return false;
     }
 }
