@@ -23,4 +23,14 @@ class Article extends Model
     {
         return $this->belongsToMany('ModernPUG\FeedReader\Tag')->withTimestamps();
     }
+
+    public function hasTag(array $tagNames)
+    {
+        $tags = $this->tags();
+        foreach($tagNames as $tagName) {
+            if($tags->contains($tagName)) {
+                return true;
+            }
+        }
+    }
 }
