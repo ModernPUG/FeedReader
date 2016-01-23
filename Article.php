@@ -2,9 +2,7 @@
 
 namespace ModernPUG\FeedReader;
 
-use App\Entities\Tag;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Article extends Model
 {

@@ -13,4 +13,5 @@ interface IReader
     public function updateAllblogs();
     public function updateBlog($blog);
     public function getLastBestArticles($lastDays);
+    public function getLastBestArticlesByTag($lastDays, $tagIds);
 }
