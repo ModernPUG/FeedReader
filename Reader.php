@@ -158,4 +158,9 @@ class Reader implements IReader
     {
         return Viewcount::getLastBestArticles($lastDays);
     }
+
+    public function getLastBestArticlesByTag($lastDays, $tagIds)
+    {
+        return Viewcount::getLastBestArticlesByTag($lastDays, $tagIds);
+    }
 }
