@@ -9,7 +9,7 @@
     "require": {
         "zendframework/zend-feed": "^2.5",
         "zendframework/zend-http": "^2.5",
-        "wandu/http": "dev-master",
+        "wandu/http": "1.6.2",
         "maknz/slack": "^1.7"
     },
     "require-dev": {
